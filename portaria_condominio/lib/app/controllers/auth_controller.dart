@@ -22,4 +22,23 @@ class AuthController with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> register(String name, String email, String password) async {
+    try {
+      final response = await _dio.post('/auth/register', data: {
+        'name': name,
+        'email': email,
+        'password': password,
+      });
+
+      if (response.statusCode == 201) {
+        return true; // Sucesso no registro
+      } else {
+        return false; // Falha no registro
+      }
+    } catch (e) {
+      print("Erro ao registrar: $e");
+      return false;
+    }
+  }
 }
