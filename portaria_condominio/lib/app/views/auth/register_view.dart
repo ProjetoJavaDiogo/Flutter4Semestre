@@ -11,7 +11,8 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   String? _errorMessage;
 
   @override
@@ -70,19 +71,9 @@ class _RegisterViewState extends State<RegisterView> {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
-                  String name = _nameController.text.trim();
                   String email = _emailController.text.trim();
                   String password = _passwordController.text.trim();
-                  String confirmPassword = _confirmPasswordController.text.trim();
-
-                  if (password != confirmPassword) {
-                    setState(() {
-                      _errorMessage = "As senhas não coincidem.";
-                    });
-                    return;
-                  }
-
-                  bool success = await authController.register(name, email, password);
+                  bool success = await authController.register(email, password);
 
                   if (success) {
                     Navigator.pushReplacementNamed(context, '/login');

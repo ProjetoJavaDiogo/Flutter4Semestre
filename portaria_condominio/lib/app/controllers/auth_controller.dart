@@ -1,44 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthController with ChangeNotifier {
-  final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000'));
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  // Registro de novo usuário
+  Future<bool> register(String email, String password) async {
+    try {
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return true;
+    } catch (e) {
+      print("Erro ao registrar usuário: $e");
+      return false;
+    }
+  }
+
+  // Login do usuário
   Future<bool> login(String email, String password) async {
     try {
-      final response = await _dio.post('/auth/login', data: {
-        'email': email,
-        'password': password,
-      });
-
-      if (response.statusCode == 200) {
-        // Você pode salvar o token de autenticação aqui, se necessário
-        return true;
-      } else {
-        return false;
-      }
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return true;
     } catch (e) {
       print("Erro ao fazer login: $e");
       return false;
     }
   }
 
-  Future<bool> register(String name, String email, String password) async {
-    try {
-      final response = await _dio.post('/auth/register', data: {
-        'name': name,
-        'email': email,
-        'password': password,
-      });
-
-      if (response.statusCode == 201) {
-        return true; // Sucesso no registro
-      } else {
-        return false; // Falha no registro
-      }
-    } catch (e) {
-      print("Erro ao registrar: $e");
-      return false;
-    }
+  // Logout do usuário
+  Future<void> logout() async {
+    await _firebaseAuth.signOut();
   }
+
+  // Verificar se o usuário está logado
+  User? get currentUser => _firebaseAuth.currentUser;
 }

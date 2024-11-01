@@ -55,25 +55,25 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () async {
                   String email = _emailController.text.trim();
                   String password = _passwordController.text.trim();
-                  
                   bool success = await authController.login(email, password);
 
                   if (success) {
                     Navigator.pushReplacementNamed(context, '/home');
                   } else {
                     setState(() {
-                      _errorMessage = "Login inválido. Verifique suas credenciais.";
+                      _errorMessage =
+                          "Login inválido. Verifique suas credenciais.";
                     });
                   }
                 },
-                child: const Text("Entrar"),
+                child: Text("Entrar"),
               ),
               TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: Text("Ainda não tem uma conta? Registre-se"),
-            ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/register');
+                },
+                child: Text("Ainda não tem uma conta? Registre-se"),
+              ),
             ],
           ),
         ),
