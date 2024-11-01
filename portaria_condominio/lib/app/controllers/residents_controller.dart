@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ResidentsController with ChangeNotifier {
@@ -9,6 +10,7 @@ class ResidentsController with ChangeNotifier {
   bool isLoading = false;
 
   // Busca moradores do Firestore
+
   Future<void> fetchResidents() async {
     isLoading = true;
     notifyListeners();
@@ -16,6 +18,7 @@ class ResidentsController with ChangeNotifier {
     try {
       final snapshot = await _residentsCollection.get();
       residents = snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+
     } catch (e) {
       print("Erro ao buscar moradores: $e");
     } finally {
@@ -33,4 +36,5 @@ class ResidentsController with ChangeNotifier {
       print("Erro ao adicionar morador: $e");
     }
   }
+
 }
