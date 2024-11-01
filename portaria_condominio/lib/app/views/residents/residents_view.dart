@@ -32,19 +32,14 @@ class _ResidentsViewState extends State<ResidentsView> {
                   title: Text(resident['name']),
                   subtitle: Text(resident['cpf']),
                   onTap: () {
-                    // Navegar para a tela de detalhes do morador
-                    Navigator.pushNamed(
-                      context,
-                      '/residentDetails',
-                      arguments: resident,
-                    );
+                    // Exibir detalhes ou ações
                   },
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/addResident');
+          // Navegar para uma tela de adição de morador
         },
         child: Icon(Icons.add),
       ),
