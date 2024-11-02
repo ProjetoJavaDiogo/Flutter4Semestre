@@ -21,7 +21,7 @@ class NotificationsController {
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Todos os campos devem ser preenchidos")),
+        const SnackBar(content: Text("Todos os campos devem ser preenchidos")),
       );
     }
   }

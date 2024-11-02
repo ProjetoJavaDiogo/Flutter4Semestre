@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class ResidentDetailsView extends StatelessWidget {
   final Map<String, dynamic> resident;
 
-  ResidentDetailsView({required this.resident});
+  const ResidentDetailsView({super.key, required this.resident});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detalhes do Morador"),
+        title: const Text("Detalhes do Morador"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -17,11 +17,11 @@ class ResidentDetailsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Nome: ${resident['name']}"),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text("CPF: ${resident['cpf']}"),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text("Endereço: ${resident['address']}"),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text("Telefone: ${resident['phone']}"),
           ],
         ),
