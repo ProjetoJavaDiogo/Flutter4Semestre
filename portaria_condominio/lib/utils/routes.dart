@@ -24,13 +24,13 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case login:
-        return MaterialPageRoute(builder: (_) => LoginView());
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case home:
-        return MaterialPageRoute(builder: (_) => HomeView());
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case register:
-        return MaterialPageRoute(builder: (_) => RegisterView());
+        return MaterialPageRoute(builder: (_) => const RegisterView());
       case residents:
-        return MaterialPageRoute(builder: (_) => ResidentsView());
+        return MaterialPageRoute(builder: (_) => const ResidentsView());
       case residentDetails:
         final resident = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -38,17 +38,17 @@ class AppRoutes {
         );
       case vehicles:
         return MaterialPageRoute(
-            builder: (_) => VehiclesPage()); // Tela de veículos
+            builder: (_) => const VehiclesPage()); // Tela de veículos
       case visits:
         return MaterialPageRoute(
-            builder: (_) => AddVisitPage()); // Tela de visitas
+            builder: (_) => const AddVisitPage()); // Tela de visitas
       case visits:
         return MaterialPageRoute(builder: (_) => VisitsView());
       // No seu AppRoutes
       case notifications:
-        return MaterialPageRoute(builder: (_) => NotificationsPage());
+        return MaterialPageRoute(builder: (_) => const NotificationsPage());
       default:
-        return MaterialPageRoute(builder: (_) => LoginView());
+        return MaterialPageRoute(builder: (_) => const LoginView());
     }
   }
 }

@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      drawer: custom.NavigationDrawer(), // Menu lateral
+      drawer: const custom.NavigationDrawer(), // Menu lateral
       body: HomeGrid(), // Conteúdo principal
     );
   }

@@ -17,11 +17,11 @@ class VehiclesPage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddVehiclePage()),
+            MaterialPageRoute(builder: (context) => const AddVehiclePage()),
           );
         },
         tooltip: "Adicionar novo veículo",
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
