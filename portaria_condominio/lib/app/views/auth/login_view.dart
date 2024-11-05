@@ -59,7 +59,6 @@ class _LoginViewState extends State<LoginView> {
                   String password = _passwordController.text.trim();
                   final authController = Provider.of<AuthController>(context);
 
-
                   if (authController) {
                     Navigator.pushReplacementNamed(context, '/home');
                   } else {
