@@ -4,14 +4,16 @@ import 'package:portaria_condominio/app/views/home/components/navigation_drawer.
 
 
 class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Condomínio"),
+        title: const Text("Condomínio"),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Redireciona para a página de notificações
               Navigator.pushNamed(context, '/notifications');

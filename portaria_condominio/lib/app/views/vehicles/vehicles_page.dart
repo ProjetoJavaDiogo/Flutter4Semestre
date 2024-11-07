@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'add_vehicle_page.dart'; // Página para adicionar novo veículo
 
 class VehiclesPage extends StatelessWidget {
+  const VehiclesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Veículos"),
+        title: const Text("Veículos"),
         centerTitle: true,
       ),
       body: VehiclesList(),
@@ -18,8 +20,8 @@ class VehiclesPage extends StatelessWidget {
             MaterialPageRoute(builder: (context) => AddVehiclePage()),
           );
         },
-        child: Icon(Icons.add),
         tooltip: "Adicionar novo veículo",
+        child: Icon(Icons.add),
       ),
     );
   }
@@ -28,16 +30,18 @@ class VehiclesPage extends StatelessWidget {
 class VehiclesList extends StatelessWidget {
   final CollectionReference vehiclesCollection = FirebaseFirestore.instance.collection('vehicles');
 
+  const VehiclesList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: vehiclesCollection.snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(child: Text("Erro ao carregar veículos"));
+          return const Center(child: Text("Erro ao carregar veículos"));
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         final vehicles = snapshot.data?.docs ?? [];
@@ -59,12 +63,12 @@ class VehiclesList extends StatelessWidget {
 class VehicleTile extends StatelessWidget {
   final QueryDocumentSnapshot vehicleData;
 
-  VehicleTile({required this.vehicleData});
+  const VehicleTile({super.key, required this.vehicleData});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
       child: ListTile(
         title: Text(vehicleData['model'] ?? 'Modelo desconhecido'),
         subtitle: Column(

@@ -4,11 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class VisitsView extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
 
+  const VisitsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Visitas"),
+        title: const Text("Visitas"),
         centerTitle: true,
       ),
       body: VisitsList(),
@@ -19,22 +21,24 @@ class VisitsView extends StatelessWidget {
 class VisitsList extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
 
+  const VisitsList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: visitsCollection.snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(child: Text("Erro ao carregar visitas"));
+          return const Center(child: Text("Erro ao carregar visitas"));
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         final visits = snapshot.data?.docs ?? [];
 
         if (visits.isEmpty) {
-          return Center(child: Text("Nenhuma visita registrada"));
+          return const Center(child: Text("Nenhuma visita registrada"));
         }
 
         return ListView.builder(
@@ -54,12 +58,12 @@ class VisitsList extends StatelessWidget {
 class VisitTile extends StatelessWidget {
   final QueryDocumentSnapshot visitData;
 
-  VisitTile({required this.visitData});
+  const VisitTile({super.key, required this.visitData});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
       child: ListTile(
         title: Text(visitData['visitorName'] ?? 'Visitante desconhecido'),
         subtitle: Column(

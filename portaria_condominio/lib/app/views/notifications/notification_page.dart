@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:portaria_condominio/app/controllers/notifications_controller.dart';
 
 class NotificationsPage extends StatefulWidget {
+  const NotificationsPage({super.key});
+
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
 }
@@ -18,17 +20,17 @@ class _NotificationsPageState extends State<NotificationsPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Adicionar Notificação"),
+          title: const Text("Adicionar Notificação"),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _titleController,
-                decoration: InputDecoration(labelText: "Título"),
+                decoration: const InputDecoration(labelText: "Título"),
               ),
               TextField(
                 controller: _descriptionController,
-                decoration: InputDecoration(labelText: "Descrição"),
+                decoration: const InputDecoration(labelText: "Descrição"),
               ),
             ],
           ),
@@ -44,11 +46,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 _descriptionController.clear();
                 Navigator.of(context).pop();
               },
-              child: Text("Adicionar"),
+              child: const Text("Adicionar"),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text("Cancelar"),
+              child: const Text("Cancelar"),
             ),
           ],
         );
@@ -60,10 +62,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notificações"),
+        title: const Text("Notificações"),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: _showAddNotificationDialog,
           ),
         ],
@@ -72,10 +74,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
         stream: _notificationsController.getNotifications(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasError) {
-            return Center(child: Text("Erro ao carregar notificações"));
+            return const Center(child: Text("Erro ao carregar notificações"));
           }
           final notifications = snapshot.data ?? [];
           return ListView.builder(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:portaria_condominio/app/controllers/vehicles_controller.dart';
 
 class AddVehiclePage extends StatefulWidget {
+  const AddVehiclePage({super.key});
+
   @override
   _AddVehiclePageState createState() => _AddVehiclePageState();
 }
@@ -28,7 +30,7 @@ class _AddVehiclePageState extends State<AddVehiclePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Adicionar Veículo"),
+        title: const Text("Adicionar Veículo"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -36,25 +38,25 @@ class _AddVehiclePageState extends State<AddVehiclePage> {
           children: [
             TextField(
               controller: _modelController,
-              decoration: InputDecoration(labelText: "Modelo do Veículo"),
+              decoration: const InputDecoration(labelText: "Modelo do Veículo"),
             ),
             TextField(
               controller: _brandController,
-              decoration: InputDecoration(labelText: "Marca do Veículo"),
+              decoration: const InputDecoration(labelText: "Marca do Veículo"),
             ),
             TextField(
               controller: _yearController,
-              decoration: InputDecoration(labelText: "Ano do Veículo"),
+              decoration: const InputDecoration(labelText: "Ano do Veículo"),
               keyboardType: TextInputType.number,
             ),
             TextField(
               controller: _licensePlateController,
-              decoration: InputDecoration(labelText: "Placa do Veículo"),
+              decoration: const InputDecoration(labelText: "Placa do Veículo"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _addVehicle,
-              child: Text("Adicionar"),
+              child: const Text("Adicionar"),
             ),
           ],
         ),

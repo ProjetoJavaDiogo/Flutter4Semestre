@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
+
   @override
   _RegisterViewState createState() => _RegisterViewState();
 }
@@ -21,7 +23,7 @@ class _RegisterViewState extends State<RegisterView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registro"),
+        title: const Text("Registro"),
       ),
       body: Center(
         child: Padding(
@@ -31,44 +33,44 @@ class _RegisterViewState extends State<RegisterView> {
             children: [
               TextField(
                 controller: _nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nome',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 controller: _emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'E-mail',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Senha',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 controller: _confirmPasswordController,
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Confirme a Senha',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               if (_errorMessage != null)
                 Text(
                   _errorMessage!,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
                   String email = _emailController.text.trim();
@@ -83,7 +85,7 @@ class _RegisterViewState extends State<RegisterView> {
                     });
                   }
                 },
-                child: Text("Registrar"),
+                child: const Text("Registrar"),
               ),
             ],
           ),
