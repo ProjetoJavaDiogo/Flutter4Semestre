@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String? _errorMessage;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,28 +53,42 @@ class _LoginViewState extends State<LoginView> {
                   style: const TextStyle(color: Colors.red),
                 ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  String email = _emailController.text.trim();
-                  String password = _passwordController.text.trim();
-                  bool success = await authController.login(email, password);
+              _isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: () async {
+                        String email = _emailController.text.trim();
+                        String password = _passwordController.text.trim();
 
-                  if (success) {
-                    Navigator.pushReplacementNamed(context, '/home');
-                  } else {
-                    setState(() {
-                      _errorMessage =
-                          "Login inválido. Verifique suas credenciais.";
-                    });
-                  }
-                },
-                child: Text("Entrar"),
-              ),
+                        // Exibir o estado de carregamento
+                        setState(() {
+                          _isLoading = true;
+                        });
+
+                        User? user = await authController.login(email, password);
+
+                        // Retirar o estado de carregamento
+                        setState(() {
+                          _isLoading = false;
+                        });
+
+                        if (user != null) {
+                          // Usuário autenticado com sucesso
+                          Navigator.pushReplacementNamed(context, '/home');
+                        } else {
+                          // Caso o login falhe
+                          setState(() {
+                            _errorMessage = "Login inválido. Verifique suas credenciais.";
+                          });
+                        }
+                      },
+                      child: const Text("Entrar"),
+                    ),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register');
                 },
-                child: Text("Ainda não tem uma conta? Registre-se"),
+                child: const Text("Ainda não tem uma conta? Registre-se"),
               ),
             ],
           ),

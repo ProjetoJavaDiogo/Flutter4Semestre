@@ -1,34 +1,34 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthController with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   // Registro de novo usuário
-  Future<bool> register(String email, String password) async {
+  Future<User?> register(String email, String password) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return true;
+      return userCredential.user;  // Retorna o usuário registrado
     } catch (e) {
       print("Erro ao registrar usuário: $e");
-      return false;
+      return null;  // Retorna null em caso de erro
     }
   }
 
   // Login do usuário
-  Future<bool> login(String email, String password) async {
+  Future<User?> login(String email, String password) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return true;
+      return userCredential.user;  // Retorna o usuário autenticado
     } catch (e) {
       print("Erro ao fazer login: $e");
-      return false;
+      return null;  // Retorna null em caso de erro
     }
   }
 
