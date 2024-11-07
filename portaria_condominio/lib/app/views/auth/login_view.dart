@@ -3,6 +3,8 @@ import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   _LoginViewState createState() => _LoginViewState();
 }
@@ -55,9 +57,9 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () async {
                   String email = _emailController.text.trim();
                   String password = _passwordController.text.trim();
-                  bool success = await authController.login(email, password);
+                  final authController = Provider.of<AuthController>(context);
 
-                  if (success) {
+                  if (authController) {
                     Navigator.pushReplacementNamed(context, '/home');
                   } else {
                     setState(() {
@@ -66,13 +68,13 @@ class _LoginViewState extends State<LoginView> {
                     });
                   }
                 },
-                child: Text("Entrar"),
+                child: const Text("Entrar"),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register');
                 },
-                child: Text("Ainda não tem uma conta? Registre-se"),
+                child: const Text("Ainda não tem uma conta? Registre-se"),
               ),
             ],
           ),

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/residents_controller.dart';
 
 class ResidentsView extends StatefulWidget {
+  const ResidentsView({super.key});
+
   @override
   _ResidentsViewState createState() => _ResidentsViewState();
 }
@@ -20,10 +22,10 @@ class _ResidentsViewState extends State<ResidentsView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Moradores"),
+        title: const Text("Moradores"),
       ),
       body: residentsController.isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: residentsController.residents.length,
               itemBuilder: (context, index) {
@@ -48,7 +50,7 @@ class _ResidentsViewState extends State<ResidentsView> {
 
           Navigator.pushNamed(context, '/addResident');
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
