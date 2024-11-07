@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/residents_controller.dart';
 
+import 'add_residents.dart';
+import 'resident_details_view.dart';
+
 class ResidentsView extends StatefulWidget {
   @override
   _ResidentsViewState createState() => _ResidentsViewState();
@@ -32,12 +35,12 @@ class _ResidentsViewState extends State<ResidentsView> {
                   title: Text(resident['name']),
                   subtitle: Text(resident['cpf']),
                   onTap: () {
-
                     // Navegar para a tela de detalhes do morador
-                    Navigator.pushNamed(
+                    Navigator.push(
                       context,
-                      '/residentDetails',
-                      arguments: resident,
+                      MaterialPageRoute(
+                        builder: (context) => ResidentDetailsView(resident: resident),
+                      ),
                     );
                   },
                 );
@@ -45,8 +48,10 @@ class _ResidentsViewState extends State<ResidentsView> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
-          Navigator.pushNamed(context, '/addResident');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => RegisterResidentPage()),
+          );
         },
         child: Icon(Icons.add),
       ),

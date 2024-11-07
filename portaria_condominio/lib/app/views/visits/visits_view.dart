@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'visits_page.dart'; // Importe a tela AddVisitPage
+
 
 class VisitsView extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
@@ -12,6 +14,17 @@ class VisitsView extends StatelessWidget {
         centerTitle: true,
       ),
       body: VisitsList(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navegar para a tela de cadastro de visitas
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddVisitPage()),
+          );
+        },
+        child: Icon(Icons.add),
+        tooltip: "Adicionar Visita",
+      ),
     );
   }
 }
@@ -65,9 +78,8 @@ class VisitTile extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Data/Hora: ${visitData['visitDateTime'] ?? 'Não informado'}"),
+            Text("Data/Hora: ${(visitData.data() as Map<String, dynamic>).containsKey('visitDateTime') ? visitData['visitDateTime'] : 'Não informado'}"),
             Text("Motivo: ${visitData['purpose'] ?? 'Motivo não informado'}"),
-            Text("Morador: ${visitData['residentName'] ?? 'Morador não informado'}"),
           ],
         ),
         isThreeLine: true,

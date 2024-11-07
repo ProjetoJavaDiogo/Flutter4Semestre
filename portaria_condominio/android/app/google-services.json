@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961750224839",
+    "project_id": "projetoportariasenai",
+    "storage_bucket": "projetoportariasenai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961750224839:android:35abe9eae03f964e4513e2",
+        "android_client_info": {
+          "package_name": "com.br.portaria"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyLCwXsTKOLYHWOAz5YJ0tQ37lpD8b4KQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

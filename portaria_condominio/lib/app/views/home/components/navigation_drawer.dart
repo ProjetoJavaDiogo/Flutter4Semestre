@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class NavigationDrawer extends StatelessWidget {
   @override
@@ -52,6 +54,18 @@ class NavigationDrawer extends StatelessWidget {
             title: Text('Visitas'),
             onTap: () {
               Navigator.pushNamed(context, '/visits');
+            },
+          ),
+          Divider(), // Adiciona uma linha separadora
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () async {
+              // Chama o método de logout do AuthController
+              await Provider.of<AuthController>(context, listen: false).logout();
+              
+              // Após o logout, redireciona para a tela de login (ou onde você preferir)
+              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
             },
           ),
         ],
