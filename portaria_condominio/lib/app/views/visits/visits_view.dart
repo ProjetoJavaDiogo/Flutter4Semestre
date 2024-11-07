@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'visits_page.dart'; // Importe a tela AddVisitPage
 
+
 class VisitsView extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
 
