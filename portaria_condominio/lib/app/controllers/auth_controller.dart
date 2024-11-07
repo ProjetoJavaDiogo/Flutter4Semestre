@@ -8,12 +8,6 @@ class AuthController with ChangeNotifier {
 
   bool isAdmin = false;
 
-  User? _user;
-
-
-
-  User? get user => _user;
-
   // Registro de novo morador (apenas para o administrador)
   Future<User?> registerResident(String email, String password, Map<String, dynamic> residentData) async {
     if (!isAdmin) {
