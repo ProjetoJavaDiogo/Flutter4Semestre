@@ -8,6 +8,9 @@ class AddVisitPage extends StatefulWidget {
 
 class _AddVisitPageState extends State<AddVisitPage> {
   final TextEditingController _visitorNameController = TextEditingController();
+
+  final TextEditingController _visitDateController = TextEditingController();
+
   final TextEditingController _purposeController = TextEditingController();
 
   final VisitsController _visitsController = VisitsController();
@@ -16,6 +19,7 @@ class _AddVisitPageState extends State<AddVisitPage> {
     final String visitorName = _visitorNameController.text;
     final String purpose = _purposeController.text;
     final String visitDate = DateTime.now().toString(); // Data e hora atuais
+
 
     _visitsController.addVisit(visitorName, visitDate, purpose, context);
   }
@@ -35,6 +39,12 @@ class _AddVisitPageState extends State<AddVisitPage> {
               decoration: InputDecoration(labelText: "Nome do Visitante"),
             ),
             TextField(
+
+              controller: _visitDateController,
+              decoration: InputDecoration(labelText: "Data da Visita (YYYY-MM-DD)"),
+            ),
+            TextField(
+
               controller: _purposeController,
               decoration: InputDecoration(labelText: "Motivo da Visita"),
             ),
