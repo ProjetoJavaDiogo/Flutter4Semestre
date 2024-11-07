@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class HomeGrid extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
     {"icon": Icons.people, "title": "Moradores", "route": "/residents"},
-    {"icon": Icons.schedule, "title": "Visitas", "route": "/visits"},
+    {"icon": Icons.schedule, "title": "Visitas", "route": "/visitsView"}, // Mude para /visitsView
     {"icon": Icons.car_rental, "title": "Veículos", "route": "/vehicles"},
     {"icon": Icons.notification_important, "title": "Notificações", "route": "/notifications"},
     {"icon": Icons.person, "title": "Prestadores de Serviço", "route": "/serviceProviders"},
