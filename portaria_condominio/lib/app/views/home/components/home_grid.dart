@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class HomeGrid extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
@@ -11,6 +13,13 @@ class HomeGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Provider.of<AuthController>(context);
+
+    // Filtra a lista de opções para mostrar "Moradores" apenas se o usuário for admin
+    final filteredOptions = authController.isAdmin
+        ? options
+        : options.where((option) => option['title'] != 'Moradores').toList();
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GridView.builder(
@@ -20,11 +29,11 @@ class HomeGrid extends StatelessWidget {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
-        itemCount: options.length,
+        itemCount: filteredOptions.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, options[index]['route']);
+              Navigator.pushNamed(context, filteredOptions[index]['route']);
             },
             child: Card(
               elevation: 4,
@@ -34,9 +43,9 @@ class HomeGrid extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(options[index]["icon"], size: 50, color: Colors.blue),
+                  Icon(filteredOptions[index]["icon"], size: 50, color: Colors.blue),
                   SizedBox(height: 10),
-                  Text(options[index]["title"],
+                  Text(filteredOptions[index]["title"],
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                 ],
               ),

@@ -1,68 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:portaria_condominio/app/controllers/residents_controller.dart';
 
-class AddResidentPage extends StatefulWidget {
-  @override
-  _AddResidentPageState createState() => _AddResidentPageState();
-}
+import '../../controllers/auth_controller.dart';
 
-class _AddResidentPageState extends State<AddResidentPage> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _cpfController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
 
-  void _addResident() {
-    final String name = _nameController.text;
-    final String cpf = _cpfController.text;
-    final String address = _addressController.text;
-    final String phone = _phoneController.text;
-
-    if (name.isNotEmpty && cpf.isNotEmpty && address.isNotEmpty && phone.isNotEmpty) {
-      final residentData = {
-        'name': name,
-        'cpf': cpf,
-        'address': address,
-        'phone': phone,
-      };
-
-      // Adiciona o morador usando o controlador
-      Provider.of<ResidentsController>(context, listen: false).addResident(residentData);
-      Navigator.pop(context); // Retorna para a tela anterior após o cadastro
-    }
-  }
+class RegisterResidentPage extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController apartmentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final authController = Provider.of<AuthController>(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Adicionar Morador"),
-      ),
+      appBar: AppBar(title: Text("Registrar Morador")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(labelText: "Nome"),
-            ),
-            TextField(
-              controller: _cpfController,
-              decoration: InputDecoration(labelText: "CPF"),
-            ),
-            TextField(
-              controller: _addressController,
-              decoration: InputDecoration(labelText: "Endereço"),
-            ),
-            TextField(
-              controller: _phoneController,
-              decoration: InputDecoration(labelText: "Telefone"),
-            ),
+            TextField(controller: emailController, decoration: InputDecoration(labelText: 'Email')),
+            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Senha')),
+            TextField(controller: nameController, decoration: InputDecoration(labelText: 'Nome')),
+            TextField(controller: apartmentController, decoration: InputDecoration(labelText: 'Apartamento')),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _addResident,
-              child: Text("Cadastrar"),
+              onPressed: () async {
+                final email = emailController.text.trim();
+                final password = passwordController.text.trim();
+                final name = nameController.text.trim();
+                final apartment = apartmentController.text.trim();
+
+                await authController.registerResident(email, password, {
+                  'name': name,
+                  'apartment': apartment,
+                });
+
+                // Limpa os campos após o registro
+                emailController.clear();
+                passwordController.clear();
+                nameController.clear();
+                apartmentController.clear();
+              },
+              child: Text("Registrar Morador"),
             ),
           ],
         ),

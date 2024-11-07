@@ -65,7 +65,8 @@ class _LoginViewState extends State<LoginView> {
                           _isLoading = true;
                         });
 
-                        User? user = await authController.login(email, password);
+                        User? user =
+                            await authController.login(email, password);
 
                         // Retirar o estado de carregamento
                         setState(() {
@@ -78,18 +79,13 @@ class _LoginViewState extends State<LoginView> {
                         } else {
                           // Caso o login falhe
                           setState(() {
-                            _errorMessage = "Login inválido. Verifique suas credenciais.";
+                            _errorMessage =
+                                "Login inválido. Verifique suas credenciais.";
                           });
                         }
                       },
                       child: const Text("Entrar"),
                     ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/register');
-                },
-                child: const Text("Ainda não tem uma conta? Registre-se"),
-              ),
             ],
           ),
         ),

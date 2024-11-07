@@ -33,7 +33,7 @@ class AppRoutes {
       case home:
         return MaterialPageRoute(builder: (_) => HomeView());
       case register:
-        return MaterialPageRoute(builder: (_) => RegisterView());
+        // return MaterialPageRoute(builder: (_) => RegisterView());
       case residents:
         return MaterialPageRoute(builder: (_) => ResidentsView());
       case residentDetails:
