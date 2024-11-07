@@ -50,7 +50,7 @@ class _ResidentsViewState extends State<ResidentsView> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddResidentPage()),
+            MaterialPageRoute(builder: (context) => RegisterResidentPage()),
           );
         },
         child: Icon(Icons.add),
