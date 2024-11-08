@@ -15,37 +15,65 @@ class AuthController with ChangeNotifier {
   User? get user => _user;
 
   // Registro de novo morador (apenas para o administrador)
-  Future<User?> registerResident(String email, String password, Map<String, dynamic> residentData) async {
+  Future<User?> registerResident(
+      String email, String password, Map<String, dynamic> residentData) async {
     if (!isAdmin) {
       print("Apenas administradores podem registrar novos moradores.");
       return null;
     }
 
     try {
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
       // Salva dados do morador no Firestore na coleção 'residents'
-      await _firestore.collection('residents').doc(userCredential.user!.uid).set({
+      await _firestore
+          .collection('residents')
+          .doc(userCredential.user!.uid)
+          .set({
         'email': email,
         ...residentData, // Inclui outros dados do morador (nome, apartamento, etc.)
-        'isAdmin': false,  // Morador não é administrador
+        'isAdmin': false, // Morador não é administrador
       });
 
-      notifyListeners();  // Notifica widgets sobre a mudança de estado
-      return userCredential.user;  // Retorna o usuário registrado
+      notifyListeners(); // Notifica widgets sobre a mudança de estado
+      return userCredential.user; // Retorna o usuário registrado
     } catch (e) {
       print("Erro ao registrar morador: $e");
-      return null;  // Retorna null em caso de erro
+      return null; // Retorna null em caso de erro
+    }
+  }
+
+  // Método para apagar a própria conta
+  Future<void> deleteAccount() async {
+    try {
+      User? currentUser = _firebaseAuth.currentUser;
+
+      if (currentUser != null) {
+        // Apagar dados do usuário no Firestore
+        await _firestore.collection('residents').doc(currentUser.uid).delete();
+
+        // Apagar usuário do Firebase Authentication
+        await currentUser.delete();
+
+        // Redefine o status de administrador e notifica o estado
+        isAdmin = false;
+        notifyListeners();
+      }
+    } catch (e) {
+      print("Erro ao apagar a conta: $e");
+      // Exibir uma mensagem apropriada em caso de erro (ex: se o usuário precisar fazer login novamente)
     }
   }
 
   // Login do usuário e verificação de status de administrador
   Future<User?> login(String email, String password) async {
     try {
-      UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -62,7 +90,7 @@ class AuthController with ChangeNotifier {
       return userCredential.user;  // Retorna o usuário autenticado
     } catch (e) {
       print("Erro ao fazer login: $e");
-      return null;  // Retorna null em caso de erro
+      return null; // Retorna null em caso de erro
     }
   }
 
