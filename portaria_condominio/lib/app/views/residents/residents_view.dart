@@ -5,6 +5,9 @@ import 'package:portaria_condominio/app/controllers/residents_controller.dart';
 import 'add_residents.dart';
 import 'resident_details_view.dart';
 
+import 'add_residents.dart';
+import 'resident_details_view.dart';
+
 class ResidentsView extends StatefulWidget {
   @override
   _ResidentsViewState createState() => _ResidentsViewState();
@@ -31,9 +34,16 @@ class _ResidentsViewState extends State<ResidentsView> {
               itemCount: residentsController.residents.length,
               itemBuilder: (context, index) {
                 final resident = residentsController.residents[index];
+
                 return ListTile(
-                  title: Text(resident['name']),
-                  subtitle: Text(resident['cpf']),
+                  title: Text(resident['name'] ?? 'Nome não disponível'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Apartamento: ${resident['apartment'] ?? 'Não informado'}'),
+                      Text('Email: ${resident['email'] ?? 'Não informado'}'),
+                    ],
+                  ),
                   onTap: () {
                     // Navegar para a tela de detalhes do morador
                     Navigator.push(

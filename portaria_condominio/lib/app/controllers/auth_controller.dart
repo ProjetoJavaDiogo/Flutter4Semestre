@@ -8,23 +8,20 @@ class AuthController with ChangeNotifier {
 
   bool isAdmin = false;
 
-  User? _user;
+  String? name;
+  String? apartment;
+  String? email;
 
-
-
-  User? get user => _user;
 
   // Registro de novo morador (apenas para o administrador)
-  Future<User?> registerResident(
-      String email, String password, Map<String, dynamic> residentData) async {
+  Future<User?> registerResident(String email, String password, Map<String, dynamic> residentData) async {
     if (!isAdmin) {
       print("Apenas administradores podem registrar novos moradores.");
       return null;
     }
 
     try {
-      UserCredential userCredential =
-          await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -71,22 +68,31 @@ class AuthController with ChangeNotifier {
 
   // Login do usuário e verificação de status de administrador
   Future<User?> login(String email, String password) async {
+  // Login do usuário e verificação de status de administrador
+  Future<User?> login(String email, String password) async {
     try {
+      UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      // Verifica se o usuário é administrador ou morador
+      // Verifica se o usuário é administrador ou morador e carrega dados adicionais
       final doc = await _firestore.collection('residents').doc(userCredential.user!.uid).get();
       if (doc.exists) {
         isAdmin = doc['isAdmin'] ?? false;  // Define o status de admin
+        name = doc['name'] ?? 'Nome não disponível';
+        this.apartment = doc['apartment'] ?? 'Apartamento não disponível';
+        this.email = doc['email'] ?? 'Email não disponível';
       } else {
         isAdmin = false;
+        this.name = null;
+        this.apartment = null;
+        this.email = null;
       }
+      
       notifyListeners();  // Notifica widgets sobre a mudança de estado
-
       return userCredential.user;  // Retorna o usuário autenticado
     } catch (e) {
       print("Erro ao fazer login: $e");
@@ -94,10 +100,13 @@ class AuthController with ChangeNotifier {
     }
   }
 
-  // Logout do usuário e redefinição do status de administrador
+  // Logout do usuário e redefinição do status de administrador e redefinição do status de administrador
   Future<void> logout() async {
     await _firebaseAuth.signOut();
     isAdmin = false;  // Reseta o status de administrador após logout
+    name = null;
+    apartment = null;
+    email = null;
     notifyListeners();  // Notifica widgets sobre a mudança de estado
   }
 
@@ -111,6 +120,21 @@ class AuthController with ChangeNotifier {
       final doc = await _firestore.collection('residents').doc(user.uid).get();
       if (doc.exists) {
         isAdmin = doc['isAdmin'] ?? false;
+      }
+      notifyListeners();
+    }
+  }
+
+  // Função para verificar status de administrador de um usuário já logado
+  Future<void> checkAdminStatus() async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      final doc = await _firestore.collection('residents').doc(user.uid).get();
+      if (doc.exists) {
+        isAdmin = doc['isAdmin'] ?? false;
+        name = doc['name'] ?? 'Nome não disponível';
+        apartment = doc['apartment'] ?? 'Apartamento não disponível';
+        email = doc['email'] ?? 'Email não disponível';
       }
       notifyListeners();
     }
