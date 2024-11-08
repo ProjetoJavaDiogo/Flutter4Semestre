@@ -68,12 +68,8 @@ class AuthController with ChangeNotifier {
 
   // Login do usuário e verificação de status de administrador
   Future<User?> login(String email, String password) async {
-  // Login do usuário e verificação de status de administrador
-  Future<User?> login(String email, String password) async {
     try {
       UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -104,25 +100,7 @@ class AuthController with ChangeNotifier {
   Future<void> logout() async {
     await _firebaseAuth.signOut();
     isAdmin = false;  // Reseta o status de administrador após logout
-    name = null;
-    apartment = null;
-    email = null;
     notifyListeners();  // Notifica widgets sobre a mudança de estado
-  }
-
-  // Verificar se o usuário está logado
-  User? get currentUser => _firebaseAuth.currentUser;
-
-  // Função para verificar status de administrador de um usuário já logado
-  Future<void> checkAdminStatus() async {
-    final user = _firebaseAuth.currentUser;
-    if (user != null) {
-      final doc = await _firestore.collection('residents').doc(user.uid).get();
-      if (doc.exists) {
-        isAdmin = doc['isAdmin'] ?? false;
-      }
-      notifyListeners();
-    }
   }
 
   // Função para verificar status de administrador de um usuário já logado
