@@ -7,9 +7,11 @@ class AuthController with ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   bool isAdmin = false;
+
   String? name;
   String? apartment;
   String? email;
+
 
   // Registro de novo morador (apenas para o administrador)
   Future<User?> registerResident(String email, String password, Map<String, dynamic> residentData) async {
