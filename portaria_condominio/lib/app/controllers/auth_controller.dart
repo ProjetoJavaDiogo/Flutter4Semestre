@@ -51,7 +51,7 @@ class AuthController with ChangeNotifier {
       final doc = await _firestore.collection('residents').doc(userCredential.user!.uid).get();
       if (doc.exists) {
         isAdmin = doc['isAdmin'] ?? false;  // Define o status de admin
-        this.name = doc['name'] ?? 'Nome não disponível';
+        name = doc['name'] ?? 'Nome não disponível';
         this.apartment = doc['apartment'] ?? 'Apartamento não disponível';
         this.email = doc['email'] ?? 'Email não disponível';
       } else {
@@ -89,9 +89,9 @@ class AuthController with ChangeNotifier {
       final doc = await _firestore.collection('residents').doc(user.uid).get();
       if (doc.exists) {
         isAdmin = doc['isAdmin'] ?? false;
-        this.name = doc['name'] ?? 'Nome não disponível';
-        this.apartment = doc['apartment'] ?? 'Apartamento não disponível';
-        this.email = doc['email'] ?? 'Email não disponível';
+        name = doc['name'] ?? 'Nome não disponível';
+        apartment = doc['apartment'] ?? 'Apartamento não disponível';
+        email = doc['email'] ?? 'Email não disponível';
       }
       notifyListeners();
     }
