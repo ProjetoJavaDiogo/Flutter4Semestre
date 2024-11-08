@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/auth_controller.dart';
+import '../../controllers/residents_controller.dart';
 
 
 class RegisterResidentPage extends StatelessWidget {
@@ -37,11 +38,16 @@ class RegisterResidentPage extends StatelessWidget {
                   'apartment': apartment,
                 });
 
+
                 // Limpa os campos após o registro
                 emailController.clear();
                 passwordController.clear();
                 nameController.clear();
                 apartmentController.clear();
+
+                await Provider.of<ResidentsController>(context, listen: false).fetchResidents();
+
+                Navigator.pushReplacementNamed(context, '/residents');
               },
               child: Text("Registrar Morador"),
             ),
