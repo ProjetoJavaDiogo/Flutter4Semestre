@@ -10,7 +10,7 @@ class VisitsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Visitas"),
+        title: const Text("Visitas"),
         centerTitle: true,
       ),
       body: VisitsList(),
@@ -22,7 +22,7 @@ class VisitsView extends StatelessWidget {
             MaterialPageRoute(builder: (context) => AddVisitPage()),
           );
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         tooltip: "Adicionar Visita",
       ),
     );
@@ -38,16 +38,16 @@ class VisitsList extends StatelessWidget {
       stream: visitsCollection.snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(child: Text("Erro ao carregar visitas"));
+          return const Center(child: Text("Erro ao carregar visitas"));
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         final visits = snapshot.data?.docs ?? [];
 
         if (visits.isEmpty) {
-          return Center(child: Text("Nenhuma visita registrada"));
+          return const Center(child: Text("Nenhuma visita registrada"));
         }
 
         return ListView.builder(
@@ -72,7 +72,7 @@ class VisitTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
       child: ListTile(
         title: Text(visitData['visitorName'] ?? 'Visitante desconhecido'),
         subtitle: Column(
