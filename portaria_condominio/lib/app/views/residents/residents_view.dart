@@ -5,6 +5,9 @@ import 'package:portaria_condominio/app/controllers/residents_controller.dart';
 import 'add_residents.dart';
 import 'resident_details_view.dart';
 
+import 'add_residents.dart';
+import 'resident_details_view.dart';
+
 class ResidentsView extends StatefulWidget {
   @override
   _ResidentsViewState createState() => _ResidentsViewState();

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:portaria_condominio/app/views/auth/login_view.dart';
-import 'package:portaria_condominio/app/views/auth/register_view.dart';
 import 'package:portaria_condominio/app/views/home/home_view.dart';
 import 'package:portaria_condominio/app/views/notifications/notification_page.dart';
 import 'package:portaria_condominio/app/views/residents/resident_details_view.dart';
 import 'package:portaria_condominio/app/views/residents/residents_view.dart';
+import 'package:portaria_condominio/app/views/settings/settings_view.dart';
 import 'package:portaria_condominio/app/views/vehicles/vehicles_page.dart';
 import 'package:portaria_condominio/app/views/visits/visits_page.dart';
 import 'package:portaria_condominio/app/views/visits/visits_view.dart';
 import '../app/views/ServiceProviders/ServiceProvider_View.dart';
 import '../app/views/ServiceProviders/ServiceProvider_add.dart';
+import '../app/views/auth/register_view.dart';
 
 // Definição de constantes para as rotas
 class AppRoutes {
@@ -18,9 +19,10 @@ class AppRoutes {
   static const String register = '/register';
   static const String residents = '/residents';
   static const String vehicles = '/vehicles';
-  static const String visitsView = '/visitsView'; // Atualize se necessário
+  static const String visitsView = '/visitsView';
   static const String visits = '/visits';
   static const String notifications = '/notifications';
+  static const String settingsView = '/settingsView';
   static const String serviceProviders = '/serviceProviders';
   static const String residentDetails = '/residentDetails';
   static const String addServiceProvider = '/addServiceProvider';
@@ -33,7 +35,7 @@ class AppRoutes {
       case home:
         return MaterialPageRoute(builder: (_) => HomeView());
       case register:
-        // return MaterialPageRoute(builder: (_) => RegisterView());
+        return MaterialPageRoute(builder: (_) => RegisterView());
       case residents:
         return MaterialPageRoute(builder: (_) => ResidentsView());
       case residentDetails:
@@ -46,6 +48,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => AddVisitPage()); // Tela de visitas
       case visitsView:
         return MaterialPageRoute(builder: (_) => VisitsView());
+      case settingsView:
+        return MaterialPageRoute(builder: (_) => SettingsView());
       case notifications:
         return MaterialPageRoute(builder: (_) => NotificationsPage());
       case serviceProviders:

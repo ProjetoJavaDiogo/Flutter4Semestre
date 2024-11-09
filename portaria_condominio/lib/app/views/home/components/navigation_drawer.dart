@@ -22,50 +22,59 @@ class NavigationDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
             onTap: () {
               Navigator.pushNamed(context, '/home');
             },
           ),
           ListTile(
-            leading: Icon(Icons.people),
-            title: Text('Moradores'),
+            leading: const Icon(Icons.people),
+            title: const Text('Moradores'),
             onTap: () {
               Navigator.pushNamed(context, '/residents');
             },
           ),
           ListTile(
-            leading: Icon(Icons.car_rental),
-            title: Text('Veículos'),
+            leading: const Icon(Icons.car_rental),
+            title: const Text('Veículos'),
             onTap: () {
               Navigator.pushNamed(context, '/vehicles');
             },
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Prestadores de Serviço'),
+            leading: const Icon(Icons.person),
+            title: const Text('Prestadores de Serviço'),
             onTap: () {
               Navigator.pushNamed(context, '/serviceProviders');
             },
           ),
           ListTile(
-            leading: Icon(Icons.schedule),
-            title: Text('Visitas'),
+            leading: const Icon(Icons.schedule),
+            title: const Text('Visitas'),
             onTap: () {
               Navigator.pushNamed(context, '/visits');
             },
           ),
-          Divider(), // Adiciona uma linha separadora
+          const Divider(), // Adiciona uma linha separadora
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Configurações'),
+            onTap: () {
+              Navigator.pushNamed(context, '/settingsView');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text('Logout'),
             onTap: () async {
               // Chama o método de logout do AuthController
-              await Provider.of<AuthController>(context, listen: false).logout();
-              
+              await Provider.of<AuthController>(context, listen: false)
+                  .logout();
+
               // Após o logout, redireciona para a tela de login (ou onde você preferir)
-              Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/login', (route) => false);
             },
           ),
         ],

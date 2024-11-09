@@ -41,46 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCXd_k8QYttKuZp8_eLY8BVUFjbUbr22ZY',
-    appId: '1:961750224839:web:66bd1ffb6f77deb24513e2',
-    messagingSenderId: '961750224839',
-    projectId: 'projetoportariasenai',
-    authDomain: 'projetoportariasenai.firebaseapp.com',
-    storageBucket: 'projetoportariasenai.firebasestorage.app',
+    apiKey: 'AIzaSyCIVMDUlAbfHv5DQnAjZynMRmGpGUeP55Y',
+    appId: '1:205263360781:web:95463b8bf65ed895879644',
+    messagingSenderId: '205263360781',
+    projectId: 'projetoportaria-1de8d',
+    authDomain: 'projetoportaria-1de8d.firebaseapp.com',
+    storageBucket: 'projetoportaria-1de8d.firebasestorage.app',
+    measurementId: 'G-3Y0H1GFSWB',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCyLCwXsTKOLYHWOAz5YJ0tQ37lpD8b4KQ',
-    appId: '1:961750224839:android:35abe9eae03f964e4513e2',
-    messagingSenderId: '961750224839',
-    projectId: 'projetoportariasenai',
-    storageBucket: 'projetoportariasenai.firebasestorage.app',
+    apiKey: 'AIzaSyBnVFVUek5Bz6osWZz5y96K3ZLVb0HEL1o',
+    appId: '1:205263360781:android:4b75aa653a7c3299879644',
+    messagingSenderId: '205263360781',
+    projectId: 'projetoportaria-1de8d',
+    storageBucket: 'projetoportaria-1de8d.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBvuu5TZXxPzL12z09PIABkxHXlKKzpg5U',
-    appId: '1:961750224839:ios:e6b4b55402a202cc4513e2',
-    messagingSenderId: '961750224839',
-    projectId: 'projetoportariasenai',
-    storageBucket: 'projetoportariasenai.firebasestorage.app',
+    apiKey: 'AIzaSyBucyLQBK9ANAEneOkkUWrnqOcLkFyjdes',
+    appId: '1:205263360781:ios:a01d8b0d5d7c049a879644',
+    messagingSenderId: '205263360781',
+    projectId: 'projetoportaria-1de8d',
+    storageBucket: 'projetoportaria-1de8d.firebasestorage.app',
     iosBundleId: 'com.example.portariaCondominio',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBvuu5TZXxPzL12z09PIABkxHXlKKzpg5U',
-    appId: '1:961750224839:ios:e6b4b55402a202cc4513e2',
-    messagingSenderId: '961750224839',
-    projectId: 'projetoportariasenai',
-    storageBucket: 'projetoportariasenai.firebasestorage.app',
+    apiKey: 'AIzaSyBucyLQBK9ANAEneOkkUWrnqOcLkFyjdes',
+    appId: '1:205263360781:ios:a01d8b0d5d7c049a879644',
+    messagingSenderId: '205263360781',
+    projectId: 'projetoportaria-1de8d',
+    storageBucket: 'projetoportaria-1de8d.firebasestorage.app',
     iosBundleId: 'com.example.portariaCondominio',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCXd_k8QYttKuZp8_eLY8BVUFjbUbr22ZY',
-    appId: '1:961750224839:web:f3b91ea83b286d674513e2',
-    messagingSenderId: '961750224839',
-    projectId: 'projetoportariasenai',
-    authDomain: 'projetoportariasenai.firebaseapp.com',
-    storageBucket: 'projetoportariasenai.firebasestorage.app',
+    apiKey: 'AIzaSyCIVMDUlAbfHv5DQnAjZynMRmGpGUeP55Y',
+    appId: '1:205263360781:web:a88c478bf3bd6488879644',
+    messagingSenderId: '205263360781',
+    projectId: 'projetoportaria-1de8d',
+    authDomain: 'projetoportaria-1de8d.firebaseapp.com',
+    storageBucket: 'projetoportaria-1de8d.firebasestorage.app',
+    measurementId: 'G-L4BMXBPC2L',
   );
+
 }

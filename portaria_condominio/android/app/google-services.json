@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "961750224839",
-    "project_id": "projetoportariasenai",
-    "storage_bucket": "projetoportariasenai.firebasestorage.app"
+    "project_number": "205263360781",
+    "project_id": "projetoportaria-1de8d",
+    "storage_bucket": "projetoportaria-1de8d.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:961750224839:android:35abe9eae03f964e4513e2",
+        "mobilesdk_app_id": "1:205263360781:android:4b75aa653a7c3299879644",
         "android_client_info": {
           "package_name": "com.br.portaria"
         }
@@ -15,7 +15,45 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCyLCwXsTKOLYHWOAz5YJ0tQ37lpD8b4KQ"
+          "current_key": "AIzaSyBnVFVUek5Bz6osWZz5y96K3ZLVb0HEL1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205263360781:android:c56517bffeff5cf6879644",
+        "android_client_info": {
+          "package_name": "com.example.portaria_"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnVFVUek5Bz6osWZz5y96K3ZLVb0HEL1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205263360781:android:98879c6a2b5ebd2c879644",
+        "android_client_info": {
+          "package_name": "com.example.portaria_condom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnVFVUek5Bz6osWZz5y96K3ZLVb0HEL1o"
         }
       ],
       "services": {
