@@ -1,98 +1,133 @@
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// import 'package:portaria_condominio/app/controllers/auth_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portaria_condominio/services/auth_service.dart';
 
-// class RegisterView extends StatefulWidget {
-//   @override
-//   _RegisterViewState createState() => _RegisterViewState();
-// }
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
-// class _RegisterViewState extends State<RegisterView> {
-//   final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _passwordController = TextEditingController();
-//   String? _errorMessage;
-//   bool _isLoading = false;
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final authController = Provider.of<AuthController>(context);
+class _RegisterViewState extends State<RegisterView> {
+  final AuthService _service = AuthService();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmedPasswordController =
+      TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Registrar Conta"),
-//       ),
-//       body: Center(
-//         child: Padding(
-//           padding: const EdgeInsets.all(16.0),
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               TextField(
-//                 controller: _emailController,
-//                 decoration: InputDecoration(
-//                   labelText: 'E-mail',
-//                   border: OutlineInputBorder(),
-//                 ),
-//               ),
-//               SizedBox(height: 16),
-//               TextField(
-//                 controller: _passwordController,
-//                 obscureText: true,
-//                 decoration: InputDecoration(
-//                   labelText: 'Senha',
-//                   border: OutlineInputBorder(),
-//                 ),
-//               ),
-//               SizedBox(height: 16),
-//               if (_errorMessage != null)
-//                 Text(
-//                   _errorMessage!,
-//                   style: TextStyle(color: Colors.red),
-//                 ),
-//               SizedBox(height: 16),
-//               _isLoading
-//                   ? CircularProgressIndicator() // Mostrar carregando enquanto tenta registrar
-//                   : ElevatedButton(
-//                       onPressed: () async {
-//                         String email = _emailController.text.trim();
-//                         String password = _passwordController.text.trim();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cadastro'),
+      ),
+      body: Center(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'E-mail',
+                    prefixIcon: const Icon(FontAwesomeIcons.envelope),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Insira um e-mail';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _emailController.text = value!;
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Senha',
+                    prefixIcon: const Icon(FontAwesomeIcons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Insira uma senha';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _passwordController.text = value!;
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _confirmedPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Confirmar Senha',
+                    prefixIcon: const Icon(FontAwesomeIcons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Insira uma senha';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    _registrarUser();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text('Cadastrar'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
-//                         // Exibir o estado de carregamento
-//                         setState(() {
-//                           _isLoading = true;
-//                         });
-
-//                         // Realiza o registro e aguarda o resultado
-//                         var user = await authController.register(email, password);
-
-//                         // Retirar o estado de carregamento
-//                         setState(() {
-//                           _isLoading = false;
-//                         });
-
-//                         if (user != null) {
-//                           // Registro bem-sucedido, navega para a tela de login
-//                           Navigator.pushReplacementNamed(context, '/login');
-//                         } else {
-//                           // Se ocorrer erro no registro, exibe a mensagem de erro
-//                           setState(() {
-//                             _errorMessage = "Erro no registro. Tente novamente.";
-//                           });
-//                         }
-//                       },
-//                       child: Text("Registrar"),
-//                     ),
-//               SizedBox(height: 16),
-//               TextButton(
-//                 onPressed: () {
-//                   Navigator.pushNamed(context, '/login');
-//                 },
-//                 child: Text("Já tem uma conta? Faça login"),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  Future<void> _registrarUser() async {
+    if (_formKey.currentState!.validate()) {
+      if (_passwordController.text == _confirmedPasswordController.text) {
+        await _service.registerUsuario(
+            _emailController.text, _confirmedPasswordController.text);
+        Navigator.pushNamed(context, '/login');
+      } else {
+        _passwordController.clear();
+        _confirmedPasswordController.clear();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('As senhas não conferem!'),
+          ),
+        );
+      }
+    }
+    _passwordController.clear();
+    _confirmedPasswordController.clear();
+  }
+}

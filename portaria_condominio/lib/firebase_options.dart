@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'projetoportaria-1de8d.firebasestorage.app',
     measurementId: 'G-L4BMXBPC2L',
   );
+
 }

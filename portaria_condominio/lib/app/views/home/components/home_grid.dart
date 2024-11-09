@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
-import 'package:provider/provider.dart';
-import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class HomeGrid extends StatelessWidget {
   final Map<String, dynamic> resident;

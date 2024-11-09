@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthController with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -16,7 +16,9 @@ class AuthController with ChangeNotifier {
   // Registro de novo morador (apenas para o administrador)
   Future<User?> registerResident(String email, String password, Map<String, dynamic> residentData) async {
     if (!isAdmin) {
-      print("Apenas administradores podem registrar novos moradores.");
+      if (kDebugMode) {
+        print("Apenas administradores podem registrar novos moradores.");
+      }
       return null;
     }
 
@@ -39,7 +41,9 @@ class AuthController with ChangeNotifier {
       notifyListeners(); // Notifica widgets sobre a mudança de estado
       return userCredential.user; // Retorna o usuário registrado
     } catch (e) {
-      print("Erro ao registrar morador: $e");
+      if (kDebugMode) {
+        print("Erro ao registrar morador: $e");
+      }
       return null; // Retorna null em caso de erro
     }
   }

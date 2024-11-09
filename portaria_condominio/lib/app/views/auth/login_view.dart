@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
@@ -86,6 +87,16 @@ class _LoginViewState extends State<LoginView> {
                       },
                       child: const Text("Entrar"),
                     ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (kDebugMode) {
+                    print("Navegando para a página de registro.");
+                  }
+                  Navigator.pushNamed(context, '/register');
+                },
+                child: const Text("Ainda não tem uma conta? Registre-se"),
+              ),
             ],
           ),
         ),

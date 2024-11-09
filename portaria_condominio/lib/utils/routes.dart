@@ -10,8 +10,7 @@ import 'package:portaria_condominio/app/views/visits/visits_page.dart';
 import 'package:portaria_condominio/app/views/visits/visits_view.dart';
 import '../app/views/ServiceProviders/ServiceProvider_View.dart';
 import '../app/views/ServiceProviders/ServiceProvider_add.dart';
-import '../app/views/ServiceProviders/ServiceProvider_View.dart';
-import '../app/views/ServiceProviders/ServiceProvider_add.dart';
+import '../app/views/auth/register_view.dart';
 
 // Definição de constantes para as rotas
 class AppRoutes {
@@ -36,7 +35,7 @@ class AppRoutes {
       case home:
         return MaterialPageRoute(builder: (_) => HomeView());
       case register:
-        // return MaterialPageRoute(builder: (_) => RegisterView());
+        return MaterialPageRoute(builder: (_) => RegisterView());
       case residents:
         return MaterialPageRoute(builder: (_) => ResidentsView());
       case residentDetails:
@@ -46,18 +45,13 @@ class AppRoutes {
       case vehicles:
         return MaterialPageRoute(builder: (_) => VehiclesPage()); // Tela de veículos
       case visits:
-        return MaterialPageRoute(
-            builder: (_) => AddVisitPage()); // Tela de visitas
+        return MaterialPageRoute(builder: (_) => AddVisitPage()); // Tela de visitas
       case visitsView:
         return MaterialPageRoute(builder: (_) => VisitsView());
       case settingsView:
         return MaterialPageRoute(builder: (_) => SettingsView());
       case notifications:
         return MaterialPageRoute(builder: (_) => NotificationsPage());
-      case serviceProviders:
-        return MaterialPageRoute(builder: (_) => ServiceProvidersView());
-      case addServiceProvider:
-        return MaterialPageRoute(builder: (_) => AddServiceProviderPage());
       case serviceProviders:
         return MaterialPageRoute(builder: (_) => ServiceProvidersView());
       case addServiceProvider:
