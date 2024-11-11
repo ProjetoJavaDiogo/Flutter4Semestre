@@ -6,6 +6,8 @@ import 'visits_page.dart'; // Importe a tela AddVisitPage
 class VisitsView extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
 
+  VisitsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +24,8 @@ class VisitsView extends StatelessWidget {
             MaterialPageRoute(builder: (context) => AddVisitPage()),
           );
         },
-        child: const Icon(Icons.add),
         tooltip: "Adicionar Visita",
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -31,6 +33,8 @@ class VisitsView extends StatelessWidget {
 
 class VisitsList extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
+
+  VisitsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +71,7 @@ class VisitsList extends StatelessWidget {
 class VisitTile extends StatelessWidget {
   final QueryDocumentSnapshot visitData;
 
-  VisitTile({required this.visitData});
+  const VisitTile({super.key, required this.visitData});
 
   @override
   Widget build(BuildContext context) {

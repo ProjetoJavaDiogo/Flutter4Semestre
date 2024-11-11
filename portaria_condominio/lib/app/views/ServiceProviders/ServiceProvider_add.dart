@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../controllers/ServicesProvider_controller.dart';
 
 class AddServiceProviderPage extends StatefulWidget {
+  const AddServiceProviderPage({super.key});
+
   @override
   _AddServiceProviderPageState createState() => _AddServiceProviderPageState();
 }
@@ -32,7 +34,7 @@ class _AddServiceProviderPageState extends State<AddServiceProviderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Adicionar Prestador de Serviço"),
+        title: const Text("Adicionar Prestador de Serviço"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -40,21 +42,21 @@ class _AddServiceProviderPageState extends State<AddServiceProviderPage> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: "Nome do Prestador"),
+              decoration: const InputDecoration(labelText: "Nome do Prestador"),
             ),
             TextField(
               controller: _serviceController,
-              decoration: InputDecoration(labelText: "Serviço Oferecido"),
+              decoration: const InputDecoration(labelText: "Serviço Oferecido"),
             ),
             TextField(
               controller: _phoneController,
-              decoration: InputDecoration(labelText: "Telefone"),
+              decoration: const InputDecoration(labelText: "Telefone"),
               keyboardType: TextInputType.phone,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _addServiceProvider,
-              child: Text("Cadastrar"),
+              child: const Text("Cadastrar"),
             ),
           ],
         ),

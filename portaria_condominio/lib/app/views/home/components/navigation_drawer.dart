@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class NavigationDrawer extends StatelessWidget {
+  const NavigationDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(

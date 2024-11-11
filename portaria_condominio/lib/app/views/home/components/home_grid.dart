@@ -6,12 +6,14 @@ class HomeGrid extends StatelessWidget {
   final Map<String, dynamic> resident;
   final List<Map<String, dynamic>> options = [
     {"icon": Icons.people, "title": "Moradores", "route": "/residents"},
-    {"icon": Icons.schedule, "title": "Visitas", "route": "/visitsView"}, // Mude para /visitsView
+    {"icon": Icons.schedule, "title": "Visitas", "route": "/visitsView"},
     {"icon": Icons.car_rental, "title": "Veículos", "route": "/vehicles"},
     {"icon": Icons.notification_important, "title": "Notificações", "route": "/notifications"},
     {"icon": Icons.person, "title": "Prestadores de Serviço", "route": "/serviceProviders"},
+    {"icon": Icons.message, "title": "Mensagens", "route": "/chat"},
+    {"icon": Icons.door_front_door, "title": "Autorizações de entrada", "route": "/qrCodeView"}
   ];
-  HomeGrid({required this.resident});
+  HomeGrid({super.key, required this.resident});
   @override
   Widget build(BuildContext context) {
     final authController = Provider.of<AuthController>(context);
@@ -23,7 +25,7 @@ class HomeGrid extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: const Text("Home"),
       ),
       body: Column(
         children: [
@@ -31,7 +33,7 @@ class HomeGrid extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Dois ícones por linha
                   childAspectRatio: 3 / 2,
                   crossAxisSpacing: 10,
@@ -52,10 +54,10 @@ class HomeGrid extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(filteredOptions[index]["icon"], size: 50, color: Colors.blue),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             filteredOptions[index]["title"],
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
@@ -70,15 +72,15 @@ class HomeGrid extends StatelessWidget {
             child: Column(
               children: [
             Text("Nome: ${resident['name'] ?? 'Não informado'}",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text("Apartamento: ${resident['apartment'] ?? 'Não informado'}",
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text("Email: ${resident['email'] ?? 'Não informado'}",
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ],
             ),

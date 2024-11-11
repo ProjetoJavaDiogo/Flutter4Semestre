@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   _LoginViewState createState() => _LoginViewState();
 }

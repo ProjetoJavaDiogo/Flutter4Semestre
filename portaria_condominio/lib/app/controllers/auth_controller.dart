@@ -83,12 +83,12 @@ class AuthController with ChangeNotifier {
       if (doc.exists) {
         isAdmin = doc['isAdmin'] ?? false;  // Define o status de admin
         name = doc['name'] ?? 'Nome não disponível';
-        this.apartment = doc['apartment'] ?? 'Apartamento não disponível';
+        apartment = doc['apartment'] ?? 'Apartamento não disponível';
         this.email = doc['email'] ?? 'Email não disponível';
       } else {
         isAdmin = false;
-        this.name = null;
-        this.apartment = null;
+        name = null;
+        apartment = null;
         this.email = null;
       }
       

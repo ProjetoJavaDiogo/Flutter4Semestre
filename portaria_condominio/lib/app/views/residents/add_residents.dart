@@ -10,21 +10,23 @@ class RegisterResidentPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController apartmentController = TextEditingController();
 
+  RegisterResidentPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final authController = Provider.of<AuthController>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text("Registrar Morador")),
+      appBar: AppBar(title: const Text("Registrar Morador")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(controller: emailController, decoration: InputDecoration(labelText: 'Email')),
-            TextField(controller: passwordController, decoration: InputDecoration(labelText: 'Senha')),
-            TextField(controller: nameController, decoration: InputDecoration(labelText: 'Nome')),
-            TextField(controller: apartmentController, decoration: InputDecoration(labelText: 'Apartamento')),
-            SizedBox(height: 20),
+            TextField(controller: emailController, decoration: const InputDecoration(labelText: 'Email')),
+            TextField(controller: passwordController, decoration: const InputDecoration(labelText: 'Senha')),
+            TextField(controller: nameController, decoration: const InputDecoration(labelText: 'Nome')),
+            TextField(controller: apartmentController, decoration: const InputDecoration(labelText: 'Apartamento')),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
                 final email = emailController.text.trim();
@@ -43,7 +45,7 @@ class RegisterResidentPage extends StatelessWidget {
                 nameController.clear();
                 apartmentController.clear();
               },
-              child: Text("Registrar Morador"),
+              child: const Text("Registrar Morador"),
             ),
           ],
         ),

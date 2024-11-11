@@ -9,6 +9,8 @@ import 'add_residents.dart';
 import 'resident_details_view.dart';
 
 class ResidentsView extends StatefulWidget {
+  const ResidentsView({super.key});
+
   @override
   _ResidentsViewState createState() => _ResidentsViewState();
 }
@@ -26,10 +28,10 @@ class _ResidentsViewState extends State<ResidentsView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Moradores"),
+        title: const Text("Moradores"),
       ),
       body: residentsController.isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: residentsController.residents.length,
               itemBuilder: (context, index) {
@@ -63,7 +65,7 @@ class _ResidentsViewState extends State<ResidentsView> {
             MaterialPageRoute(builder: (context) => RegisterResidentPage()),
           );
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../controllers/ServicesProvider_controller.dart';
 
 class ServiceProvidersView extends StatefulWidget {
+  const ServiceProvidersView({super.key});
+
   @override
   _ServiceProvidersViewState createState() => _ServiceProvidersViewState();
 }
@@ -21,10 +23,10 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Prestadores de Serviço"),
+        title: const Text("Prestadores de Serviço"),
       ),
       body: serviceProvidersController.isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: serviceProvidersController.serviceProviders.length,
               itemBuilder: (context, index) {
@@ -40,7 +42,7 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
         onPressed: () {
           Navigator.pushNamed(context, '/addServiceProvider');
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

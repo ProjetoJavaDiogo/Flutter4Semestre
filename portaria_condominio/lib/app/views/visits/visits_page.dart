@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portaria_condominio/app/controllers/visits_controller.dart';
 
 class AddVisitPage extends StatefulWidget {
+  const AddVisitPage({super.key});
+
   @override
   _AddVisitPageState createState() => _AddVisitPageState();
 }
@@ -28,7 +30,7 @@ class _AddVisitPageState extends State<AddVisitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Adicionar Visita"),
+        title: const Text("Adicionar Visita"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -36,22 +38,22 @@ class _AddVisitPageState extends State<AddVisitPage> {
           children: [
             TextField(
               controller: _visitorNameController,
-              decoration: InputDecoration(labelText: "Nome do Visitante"),
+              decoration: const InputDecoration(labelText: "Nome do Visitante"),
             ),
             TextField(
 
               controller: _visitDateController,
-              decoration: InputDecoration(labelText: "Data da Visita (YYYY-MM-DD)"),
+              decoration: const InputDecoration(labelText: "Data da Visita (YYYY-MM-DD)"),
             ),
             TextField(
 
               controller: _purposeController,
-              decoration: InputDecoration(labelText: "Motivo da Visita"),
+              decoration: const InputDecoration(labelText: "Motivo da Visita"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _addVisit,
-              child: Text("Adicionar"),
+              child: const Text("Adicionar"),
             ),
           ],
         ),
