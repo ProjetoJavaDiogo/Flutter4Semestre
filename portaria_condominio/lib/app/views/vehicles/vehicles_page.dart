@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'add_vehicle_page.dart'; // Página para adicionar novo veículo
@@ -30,8 +31,10 @@ class VehiclesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+
     return StreamBuilder<QuerySnapshot>(
-      stream: vehiclesCollection.snapshots(),
+      stream: vehiclesCollection.where('userId', isEqualTo: userId).snapshots(), // Filtra pelo ID do usuário
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(child: Text("Erro ao carregar veículos"));

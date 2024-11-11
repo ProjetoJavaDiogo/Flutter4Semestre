@@ -98,4 +98,12 @@ class AuthController with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<String?> getUserRole(User? user) async {
+    if (user != null) {
+      DocumentSnapshot userData = await _firestore.collection('users').doc(user.uid).get();
+      return userData['role'];
+    }
+    return null;
+  }
 }
