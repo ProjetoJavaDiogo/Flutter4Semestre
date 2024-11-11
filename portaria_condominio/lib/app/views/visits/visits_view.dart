@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'visits_page.dart'; // Importe a tela AddVisitPage
@@ -31,11 +32,18 @@ class VisitsView extends StatelessWidget {
 
 class VisitsList extends StatelessWidget {
   final CollectionReference visitsCollection = FirebaseFirestore.instance.collection('visits');
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
+    final User? user = _auth.currentUser;
+
+    if (user == null) {
+      return Center(child: Text("Usuário não autenticado"));
+    }
+
     return StreamBuilder<QuerySnapshot>(
-      stream: visitsCollection.snapshots(),
+      stream: visitsCollection.where('userId', isEqualTo: user.uid).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(child: Text("Erro ao carregar visitas"));

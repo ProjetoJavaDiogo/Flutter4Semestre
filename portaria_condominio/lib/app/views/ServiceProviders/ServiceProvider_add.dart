@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/ServicesProvider_controller.dart';
+import '../../controllers/servicesProvider_controller.dart';
 
 class AddServiceProviderPage extends StatefulWidget {
   @override
