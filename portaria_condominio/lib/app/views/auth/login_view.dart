@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   _LoginViewState createState() => _LoginViewState();
 }
@@ -11,8 +14,36 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final LocalAuthentication _localAuth = LocalAuthentication();
   String? _errorMessage;
   bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _authenticateWithBiometrics(); // Chama a função ao iniciar a tela
+  }
+
+  Future<void> _authenticateWithBiometrics() async {
+    try {
+      bool authenticated = await _localAuth.authenticate(
+        localizedReason: 'Por favor, autentique-se para fazer login',
+        options: const AuthenticationOptions(
+          useErrorDialogs: true,
+          stickyAuth: true,
+        ),
+      );
+
+      if (authenticated) {
+        // Caso a autenticação seja bem-sucedida, redirecionar para a página principal
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = "Falha na autenticação biométrica.";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +96,7 @@ class _LoginViewState extends State<LoginView> {
                           _isLoading = true;
                         });
 
-                        User? user =
-                            await authController.login(email, password);
+                        User? user = await authController.login(email, password);
 
                         // Retirar o estado de carregamento
                         setState(() {
@@ -79,13 +109,18 @@ class _LoginViewState extends State<LoginView> {
                         } else {
                           // Caso o login falhe
                           setState(() {
-                            _errorMessage =
-                                "Login inválido. Verifique suas credenciais.";
+                            _errorMessage = "Login inválido. Verifique suas credenciais.";
                           });
                         }
                       },
                       child: const Text("Entrar"),
                     ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/register');
+                },
+                child: const Text("Ainda não tem uma conta? Registre-se"),
+              ),
             ],
           ),
         ),
