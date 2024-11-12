@@ -1,38 +1,71 @@
-Apresentação do Projeto
-O projeto visa desenvolver um Sistema de Controle de Acesso e Gerenciamento de Visitas para Condomínios. Com a crescente preocupação em segurança, organização e facilidade de gestão em ambientes residenciais e empresariais, o sistema propõe um controle de entrada e saída que integra autenticação segura (via reconhecimento facial e QRCode) e funcionalidades personalizáveis para proprietários, moradores, prestadores de serviço e administração do condomínio.
+# Sistema de Controle de Acesso e Gerenciamento de Visitas para Condomínios
 
-A solução almeja facilitar o cadastro e monitoramento de acessos, simplificar a autorização de visitas, e oferecer uma visão detalhada do fluxo de pessoas no condomínio. Para os administradores, serão disponibilizados relatórios de uso, notificações em tempo real e controle restrito de áreas.
+O projeto visa desenvolver um **Sistema de Controle de Acesso e Gerenciamento de Visitas** para condomínios, focando na segurança, organização e facilidade de gestão de entradas e saídas. O sistema integra autenticação segura, utilizando reconhecimento facial e QRCode, e oferece funcionalidades personalizáveis para diferentes usuários: proprietários, moradores, prestadores de serviço e administradores.
 
-Discussão Inicial de Requisitos
-Abaixo estão os requisitos iniciais, divididos por funcionalidades essenciais e funcionalidades adicionais sugeridas:
+![Logo do Projeto](./portaria_condominio//lib/assets/logo.png)
 
-1. Cadastro de Proprietários e Moradores
-Dados pessoais: nome, CPF, endereço, telefone.
-Cadastro de moradores: reconhecimento facial, nome, CPF, endereço, telefone.
-Cadastro de veículos: marca, modelo, placa, tag NFC.
-2. Gestão de Acesso e Convites de Visita
-Convite de Visita: O proprietário pode convidar prestadores e definir período de visita.
-Geração de QRCode para acesso temporário.
-Aprovação de Visita: Proprietário pode aprovar ou recusar solicitações enviadas por prestadores.
-3. Gestão de Prestadores de Serviço
-Cadastro: dados pessoais, reconhecimento facial, empresa.
-Aceitação de Convite: prestadores podem aceitar ou recusar convites.
-Solicitação de Visita: definição do motivo e período para visita.
-4. Funções para Administração do Condomínio
-Cadastro e edição de moradores e visitantes.
-Aprovação de cadastros de moradores.
-Controle de Funções e Acesso: liberação e restrição de áreas para funcionários, moradores e visitantes.
-Envio de notificações para moradores e visitantes.
-Restrição de acesso forçado, mesmo que um morador tenha liberado.
-5. Funcionalidades de Segurança e Auditoria
-Histórico de acessos para proprietários, visitantes e prestadores.
-Notificações em tempo real para atividades suspeitas ou tentativas de acesso fora do período autorizado.
-Integração com sistema de segurança: como câmeras e alarmes para monitoramento contínuo.
-6. Funcionalidades Adicionais Sugeridas
-Painel de Relatórios: análise de dados como frequência de visitas, áreas mais acessadas, e histórico de restrições.
-Check-in/Check-out digital: para facilitar o registro de tempo dos prestadores de serviço.
-Controle de Permissões Avançado: com autorização de áreas específicas para determinados moradores ou visitantes.
+## Sumário
 
+1. [Objetivos](#objetivos)
+2. [Requisitos Iniciais](#requisitos-iniciais)
+   - [Funcionalidades Essenciais](#funcionalidades-essenciais)
+   - [Funcionalidades Adicionais Sugeridas](#funcionalidades-adicionais-sugeridas)
+3. [Fluxo de Cadastro e Acesso](#fluxo-de-cadastro-e-acesso)
+4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
+5. [Contribuindo](#contribuindo)
+
+---
+
+## Objetivos
+
+- **Facilitar o cadastro e monitoramento de acessos.**
+- **Simplificar a autorização de visitas** por meio de QRCode e reconhecimento facial.
+- **Prover uma visão detalhada do fluxo de pessoas** no condomínio.
+- **Gerar relatórios de uso**, notificações em tempo real e controle restrito de áreas para administradores.
+
+---
+
+## Requisitos Iniciais
+
+### Funcionalidades Essenciais
+
+1. **Cadastro de Proprietários e Moradores**
+   - Dados pessoais: nome, CPF, endereço, telefone.
+   - Cadastro de moradores com reconhecimento facial.
+   - Cadastro de veículos (marca, modelo, placa, tag NFC).
+
+2. **Gestão de Acesso e Convites de Visita**
+   - Proprietário pode convidar prestadores e definir período de visita.
+   - Geração de QRCode para acesso temporário.
+   - Aprovação ou recusa de visitas pelo proprietário.
+
+3. **Gestão de Prestadores de Serviço**
+   - Cadastro de prestadores: dados pessoais, reconhecimento facial, empresa.
+   - Aceitação de convite para visita.
+   - Definição do motivo e período da visita.
+
+4. **Funções para Administração do Condomínio**
+   - Cadastro e edição de moradores e visitantes.
+   - Aprovação de cadastros de moradores.
+   - Controle de acesso a áreas e envio de notificações.
+   - Restrição de acesso forçado, mesmo se autorizado por moradores.
+
+5. **Funcionalidades de Segurança e Auditoria**
+   - Histórico de acessos de moradores, visitantes e prestadores.
+   - Notificações em tempo real sobre atividades suspeitas.
+   - Integração com sistema de segurança (câmeras, alarmes).
+
+### Funcionalidades Adicionais Sugeridas
+
+- **Painel de Relatórios:** Análise de dados sobre frequência de visitas e áreas mais acessadas.
+- **Check-in/Check-out digital** para prestadores de serviço.
+- **Controle de Permissões Avançado:** Autorização de áreas específicas para moradores e visitantes.
+
+---
+
+## Fluxo de Cadastro e Acesso
+
+```mermaid
 flowchart TD
     %% Cadastro de Proprietário
     A[Inicio] --> B[Cadastro do Proprietário]
@@ -85,3 +118,4 @@ flowchart TD
     F3 --> I[Fim]
     H3 --> I
     G8 --> I
+```
