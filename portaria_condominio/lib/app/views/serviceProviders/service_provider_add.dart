@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/servicesProvider_controller.dart';
+import '../../controllers/services_provider_controller.dart';
 
 class AddServiceProviderPage extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class _AddServiceProviderPageState extends State<AddServiceProviderPage> {
       "phone": phone,
     };
 
-    Provider.of<ServiceProvidersController>(context, listen: false).addServiceProvider(providerData);
+    Provider.of<ServicesproviderController>(context, listen: false).addServiceProvider(providerData);
     Navigator.pop(context);
   }
 

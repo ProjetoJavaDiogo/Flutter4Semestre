@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portaria_condominio/app/views/auth/login_view.dart';
-import 'package:portaria_condominio/app/views/auth/register_view.dart';
 import 'package:portaria_condominio/app/views/entry_authorization/qr_code_view.dart';
 import 'package:portaria_condominio/app/views/home/home_view.dart';
 import 'package:portaria_condominio/app/views/notifications/notification_page.dart';
@@ -9,8 +8,8 @@ import 'package:portaria_condominio/app/views/residents/residents_view.dart';
 import 'package:portaria_condominio/app/views/vehicles/vehicles_page.dart';
 import 'package:portaria_condominio/app/views/visits/visits_page.dart';
 import 'package:portaria_condominio/app/views/visits/visits_view.dart';
-import '../app/views/ServiceProviders/ServiceProvider_View.dart';
-import '../app/views/ServiceProviders/ServiceProvider_add.dart';
+import '../app/views/serviceProviders/service_provider_view.dart';
+import '../app/views/serviceProviders/service_provider_add.dart';
 
 // Definição de constantes para as rotas
 class AppRoutes {
