@@ -2,7 +2,7 @@
 
 O projeto visa desenvolver um **Sistema de Controle de Acesso e Gerenciamento de Visitas** para condomínios, focando na segurança, organização e facilidade de gestão de entradas e saídas. O sistema integra autenticação segura, utilizando reconhecimento facial e QRCode, e oferece funcionalidades personalizáveis para diferentes usuários: proprietários, moradores, prestadores de serviço e administradores.
 
-![Logo do Projeto](./portaria_condominio//assets/images/logopng)
+![Logo do Projeto](./portaria_condominio//assets/images/logo.png)
 
 ## Sumário
 
