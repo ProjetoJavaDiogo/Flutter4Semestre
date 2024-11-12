@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portaria_condominio/app/views/auth/login_view.dart';
 import 'package:portaria_condominio/app/views/auth/register_view.dart';
+import 'package:portaria_condominio/app/views/entry_authorization/qr_code_view.dart';
 import 'package:portaria_condominio/app/views/home/home_view.dart';
 import 'package:portaria_condominio/app/views/notifications/notification_page.dart';
 import 'package:portaria_condominio/app/views/residents/resident_details_view.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String visitsView = '/visitsView'; // Atualize se necessário
   static const String visits = '/visits';
   static const String notifications = '/notifications';
+  static const String entryAuthorizations = '/qrCodeView';
   static const String serviceProviders = '/serviceProviders';
   static const String residentDetails = '/residentDetails';
   static const String addServiceProvider = '/addServiceProvider';
@@ -52,6 +54,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => ServiceProvidersView());
       case addServiceProvider:
         return MaterialPageRoute(builder: (_) => AddServiceProviderPage());
+      case entryAuthorizations:
+        return MaterialPageRoute(builder: (_) => QrCodeView());
       default:
         return MaterialPageRoute(builder: (_) => LoginView());
     }

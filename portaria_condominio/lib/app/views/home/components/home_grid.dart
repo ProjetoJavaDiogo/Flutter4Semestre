@@ -10,6 +10,7 @@ class HomeGrid extends StatelessWidget {
     {"icon": Icons.car_rental, "title": "Veículos", "route": "/vehicles"},
     {"icon": Icons.notification_important, "title": "Notificações", "route": "/notifications"},
     {"icon": Icons.person, "title": "Prestadores de Serviço", "route": "/serviceProviders"},
+    {"icon": Icons.door_front_door, "title": "Autorizações de entrada", "route": "/qrCodeView"}
   ];
   HomeGrid({required this.resident});
   @override
