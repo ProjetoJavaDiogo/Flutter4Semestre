@@ -6,9 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:portaria_condominio/app/controllers/auth_controller.dart';
 import 'package:portaria_condominio/app/controllers/residents_controller.dart';
 import 'package:portaria_condominio/utils/routes.dart';
-
-import 'app/controllers/servicesProvider_controller.dart';
-
+import 'app/controllers/services_provider_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ServiceProvidersController()),
+        ChangeNotifierProvider(create: (_) => ServicesproviderController()),
         ChangeNotifierProvider(create: (_) => AuthController()),
         ChangeNotifierProvider(create: (_) => ResidentsController()),
         ChangeNotifierProvider(create: (_) => VisitsController()), // Controller de visitas
