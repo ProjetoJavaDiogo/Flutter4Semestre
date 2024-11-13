@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -36,14 +38,16 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
           : ListView.builder(
               itemCount: serviceProvidersController.serviceProviders.length,
               itemBuilder: (context, index) {
-                final provider = serviceProvidersController.serviceProviders[index];
+                final provider =
+                    serviceProvidersController.serviceProviders[index];
                 return ServiceProviderCard(
                   provider: provider,
                   onEdit: () => _editServiceProvider(context, provider),
-                  onCall: () => _launchUrl('tel', provider['phone']),
-                  onMessage: () => _launchUrl('sms', provider['phone']),
+                  onCall: () => _callProvider(provider['phone']),
+                  onMessage: () => _sendMessageToProvider(provider['phone']),
                   onPortaria: () => _showPortariaDialog(provider),
-                  onDelete: () => _confirmDeleteServiceProvider(context, provider['id']),
+                  onDelete: () =>
+                      _confirmDeleteServiceProvider(context, provider['id']),
                   onTap: () => _showActionButtons(context, provider),
                 );
               },
@@ -89,7 +93,9 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
   void _updatePortariaStatus(dynamic provider, String status) {
     // Lógica para atualizar o status do prestador de serviço (liberado ou bloqueado)
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Status de portaria de ${provider['name']} atualizado para $status")),
+      SnackBar(
+          content: Text(
+              "Status de portaria de ${provider['name']} atualizado para $status")),
     );
     // Aqui você pode chamar a lógica do backend para salvar a alteração no banco de dados
   }
@@ -117,13 +123,13 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
                     context,
                     icon: Icons.call,
                     label: "Ligar",
-                    onPressed: () => _launchUrl('tel', provider['phone']),
+                    onPressed: () => _callProvider(provider['phone']),
                   ),
                   _buildActionButton(
                     context,
                     icon: Icons.message,
                     label: "Mensagem",
-                    onPressed: () => _launchUrl('sms', provider['phone']),
+                    onPressed: () => _sendMessageToProvider(provider['phone']),
                   ),
                   _buildActionButton(
                     context,
@@ -205,14 +211,6 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (_nameController.text.isEmpty ||
-                    _phoneController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Todos os campos são obrigatórios.")),
-                  );
-                  return;
-                }
-
                 final updatedData = {
                   "name": _nameController.text,
                   "service": _serviceController.text,
@@ -232,14 +230,30 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
     );
   }
 
-  void _launchUrl(String scheme, String path) async {
-    final Uri url = Uri(scheme: scheme, path: path);
+  void _callProvider(String phone) async {
+    final Uri phoneUrl = Uri(scheme: 'tel', path: phone);
 
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
+    try {
+      final bool launched = await launchUrl(phoneUrl);
+      if (!launched) {
+        throw 'Não foi possível realizar a ligação';
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    }
+  }
+
+  void _sendMessageToProvider(String phone) async {
+    final Uri smsUrl = Uri(scheme: 'sms', path: phone);
+
+    if (await canLaunchUrl(smsUrl)) {
+      await launchUrl(smsUrl);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Não foi possível abrir a URL.")),
+        const SnackBar(
+            content: Text("Não foi possível abrir o aplicativo de mensagens.")),
       );
     }
   }
@@ -300,7 +314,8 @@ class _ServiceProvidersViewState extends State<ServiceProvidersView> {
                   Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Texto de confirmação errado")),
+                    const SnackBar(
+                        content: Text("Texto de confirmação errado")),
                   );
                 }
               },
