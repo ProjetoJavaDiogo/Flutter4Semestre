@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ServicesproviderController with ChangeNotifier {
@@ -29,7 +29,9 @@ class ServicesproviderController with ChangeNotifier {
         }).toList();
       }
     } catch (e) {
-      print("Erro ao buscar prestadores de serviço: $e");
+      if (kDebugMode) {
+        print("Erro ao buscar prestadores de serviço: $e");
+      }
     } finally {
       isLoading = false;
       notifyListeners();
@@ -37,26 +39,41 @@ class ServicesproviderController with ChangeNotifier {
   }
 
   // Função para adicionar prestador de serviço
-  Future<void> addServiceProvider(Map<String, dynamic> serviceProviderData) async {
+  Future<void> addServiceProvider(
+      Map<String, dynamic> serviceProviderData) async {
     try {
       final userId = FirebaseAuth.instance.currentUser?.uid;
       if (userId != null) {
         serviceProviderData['userId'] = userId;
+
+        // Inicializa a lista de apartamentos liberados como vazia se não fornecido
+        serviceProviderData['liberatedApartments'] =
+            serviceProviderData['liberatedApartments'] ?? [];
+
         await _serviceProvidersCollection.add(serviceProviderData);
-        fetchServiceProviders(); 
+        fetchServiceProviders();
       }
     } catch (e) {
-      print("Erro ao adicionar prestador de serviço: $e");
+      if (kDebugMode) {
+        print("Erro ao adicionar prestador de serviço: $e");
+      }
     }
   }
 
   // Função para atualizar prestador de serviço
-  Future<void> updateServiceProvider(String id, Map<String, dynamic> updatedData) async {
+  Future<void> updateServiceProvider(
+      String id, Map<String, dynamic> updatedData) async {
     try {
+      // Atualiza o campo 'liberatedApartments' para uma lista vazia se não existir
+      updatedData['liberatedApartments'] =
+          updatedData['liberatedApartments'] ?? [];
+
       await _serviceProvidersCollection.doc(id).update(updatedData);
-      fetchServiceProviders(); 
+      fetchServiceProviders();
     } catch (e) {
-      print("Erro ao atualizar prestador de serviço: $e");
+      if (kDebugMode) {
+        print("Erro ao atualizar prestador de serviço: $e");
+      }
     }
   }
 
@@ -64,9 +81,11 @@ class ServicesproviderController with ChangeNotifier {
   Future<void> deleteServiceProvider(String id) async {
     try {
       await _serviceProvidersCollection.doc(id).delete();
-      fetchServiceProviders(); 
+      fetchServiceProviders();
     } catch (e) {
-      print("Erro ao excluir prestador de serviço: $e");
+      if (kDebugMode) {
+        print("Erro ao excluir prestador de serviço: $e");
+      }
     }
   }
 }
